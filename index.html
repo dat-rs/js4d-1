@@ -1,0 +1,119 @@
+<head>
+
+<link href="https://fonts.googleapis.com/css2?family=Corben&family=Rye&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+
+    <section>
+
+        <div class="circle">
+
+
+        </div>
+
+        <h1>Sofia Talefe is...</h1>
+
+        <h2>The Queen of the World</h2>
+
+    </section>
+
+
+    <footer>
+
+        <img class="prev" src="prev.svg" alt="">
+        <img class="random" src="random.svg" alt="">
+        <img class="next" src="next.svg" alt="">
+
+    </footer>
+
+<script>
+
+let pageNumber = 0
+const pagesText = ["the queen of the world", "addicted to massages", "drowning in pandas", "the passion of my rugged"]
+const nextTag = document.querySelector("footer img.next")
+const prevTag = document.querySelector("footer img.prev")
+const randomTag = document.querySelector("footer img.random")
+const outputTag = document.querySelector("h2")
+const bodyTag = document.querySelector("body")
+const circleTag = document.querySelector(".circle")
+
+const pages = [
+    {copy: "the queen of the world", bgColor: "#edc7a9", circleColor: "#3e78ed" },
+    {copy: "addicted to massages", bgColor: "#a1fffe", circleColor: "#e34a47" },
+    {copy: "drowning in pandas", bgColor: "#d3c7f3", circleColor: "#f7fe00" },
+    {copy: "the passion of my rugged", bgColor: "#faffb8", circleColor: "#b472e6" }
+    
+]
+
+const next = function(){
+    pageNumber = pageNumber + 1
+    
+    if(pageNumber > pagesText.length - 1){
+       pageNumber = 0
+       }
+    
+    updateContent()
+    
+}
+
+const prev = function(){
+    pageNumber = pageNumber - 1
+    
+    if(pageNumber < 0){
+       pageNumber = pagesText.length - 1
+       }
+    
+    updateContent()
+
+}
+
+const random = function(){
+    pageNumber = Math.floor( Math.random() * pages.length )
+    
+    updateContent()
+
+}
+
+const updateContent = function(){
+    outputTag.innerHTML = pages[pageNumber].copy
+    bodyTag.style.backgroundColor = pages[pageNumber].bgColor
+    circleTag.style.backgroundColor = pages[pageNumber].circleColor
+}
+
+nextTag.addEventListener("click", function(){
+    next()
+})
+    
+prevTag.addEventListener("click", function(){
+    prev()
+})
+
+randomTag.addEventListener("click", function(){
+    random()
+})
+    
+document.addEventListener("keyup", function(event){
+    console.log(event)
+
+    if(event.key == "ArrowRight") {
+        next()
+    }
+    
+    if(event.key == "ArrowLeft") {
+        prev()
+    }
+    
+    if(event.key == "r") {
+        random()
+    }
+})
+    
+    
+    
+</script>
+
+</body>
